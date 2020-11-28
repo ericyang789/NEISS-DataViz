@@ -30,7 +30,6 @@ ui <- fluidPage(
                         "Filter Narratives By"
                     ),
         
-                    # SOLUTION GROUP EXERCISE
                     sliderInput(
                         "age",
                         "Filter Age By",
@@ -38,8 +37,7 @@ ui <- fluidPage(
                         max=99,
                         value=c(0, 99)
                     ),
-        
-                    # SOLUTION GROUP EXERCISE
+
                     selectInput(
                         "bodypart",
                         "Filter Bodypart By",
@@ -70,7 +68,6 @@ ui <- fluidPage(
                         selected=FALSE
                     ),
                     
-                    # SOLUTION GROUP EXERCISE
                     radioButtons( 
                         "isDiagnosisStratified", 
                         "Stratify by Diagnosis?", 
@@ -148,7 +145,6 @@ server <- function(input, output) {
             filter(Product_1 == input$product) %>%
             filter(stringr::str_detect(Narrative_1, toupper(input$narrative_filter)))
 
-        # SOLUTION GROUP EXERCISE
         selection <- selection %>%
             filter(Age >= input$age[1] ) %>%
             filter(Age <= input$age[2] )
@@ -157,7 +153,6 @@ server <- function(input, output) {
         selection <- selection %>%
             filter(Year %in% input$years)
         
-        # SOLUTION GROUP EXERCISE
         # only apply body part filter if user made a selection
         # do not filter if no body part was selected
         if ( !is.null( input$bodypart ) ) {
@@ -230,8 +225,7 @@ server <- function(input, output) {
                 geom_bar(aes(x=.data[[input_group]] )) +
                 ggtitle( paste0( "Injuries by ", input_group ) )
         }
-
-        # SOLUTION GROUP EXERCISE
+        
         if ( input$isDiagnosisStratified ) {
             plot <- plot + facet_wrap(as.factor(cases()$Diagnosis))
         }
