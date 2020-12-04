@@ -7,7 +7,14 @@ library(lubridate)
 library(bmi713neiss)
 library(scales)
 
-data <- neiss_2008_2018
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(scales)
+
+load("neiss_2008_2018.rda")
+data <- data.frame(neiss_2008_2018)
 
 ui <- fluidPage(
     
